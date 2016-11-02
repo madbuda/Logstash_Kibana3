@@ -172,7 +172,7 @@ EOF
 mv /opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json /opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json.orig
 tee -a /opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json <<EOF
 {
-  "template" : "logstash-*",
+  "template" : "pvl-logstash*",
   "settings" : {
     "index.refresh_interval" : "5s"
   },
