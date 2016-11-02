@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
-
 # This script configures the node as a logstash processor, Elasticsearch client node in logstash-cluster
 
 set -e
@@ -45,7 +42,7 @@ add-apt-repository -y ppa:webupd8team/java
 apt-get -qq update
 echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 apt-get install -y oracle-java7-installer oracle-java7-set-default
- 
+
 # Install Elasticsearch
 cd /opt
 #wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.1.deb
@@ -65,8 +62,8 @@ echo "index.number_of_shards: 5" >> /etc/elasticsearch/elasticsearch.yml
 echo "index.number_of_replicas: 1" >> /etc/elasticsearch/elasticsearch.yml
 echo "bootstrap.mlockall: true" >> /etc/elasticsearch/elasticsearch.yml
 echo "##### Uncomment below instead of using multicast and update with your actual ES Master/Data nodenames #####" >> /etc/elasticsearch/elasticsearch.yml
-echo '#discovery.zen.ping.unicast.hosts: ["es-1", "es-2"]' >> /etc/elasticsearch/elasticsearch.yml
-echo "#discovery.zen.ping.multicast.enabled: false" >> /etc/elasticsearch/elasticsearch.yml
+echo 'discovery.zen.ping.unicast.hosts: ["pvl-esdata01.northamericanbancard.com", "pvl-esdata02.northamericanbancard.com"]' >> /etc/elasticsearch/elasticsearch.yml
+echo "discovery.zen.ping.multicast.enabled: false" >> /etc/elasticsearch/elasticsearch.yml
 
 # Making changes to /etc/security/limits.conf to allow more open files for elasticsearch
 mv /etc/security/limits.conf /etc/security/limits.bak
@@ -1032,6 +1029,4 @@ echo "Installation has completed!!"
 echo -e "To connect to cluster connect to ${red}http://logstash/kibana${NC}"
 echo -e "To connect to individual host use the info below"
 echo -e "Connect to ${red}http://$yourfqdn/kibana${NC} or ${red}http://$IPADDY/kibana${NC}"
-echo "${yellow}EveryThingShouldBeVirtual.com${NC}"
-echo "${yellow}@mrlesmithjr${NC}"
-echo "${yellow}Enjoy!!!${NC}"
+

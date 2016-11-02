@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
 
 set -e
 # Setup logging
@@ -997,7 +995,7 @@ curator optimize --older-than 2 2>&1 | nc logstash 28778
 curator delete --older-than 60 -p .marvel- 2>&1 | nc logstash 28778
 curator close --older-than 7 -p .marvel- 2>&1 | nc logstash 28778
 curator bloom --older-than 2 -p .marvel- 2>&1 | nc logstash 28778
-curator optimize --older-than 2 -p .marvel- 2>&1 | nc logstash 28778 
+curator optimize --older-than 2 -p .marvel- 2>&1 | nc logstash 28778
 
 # Email report
 #recipients="emailAdressToReceiveReport"

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
 
 set -e
 # Setup logging
@@ -60,7 +58,7 @@ sed -i '$a\bootstrap.mlockall: true' /etc/elasticsearch/elasticsearch.yml
 # Restart Elasticsearch service
 service elasticsearch restart
 
-# Install Logstash 
+# Install Logstash
 mkdir /opt/logstash
 cd /opt/logstash
 #wget https://download.elasticsearch.org/logstash/logstash/logstash-1.2.2-flatjar.jar
@@ -72,7 +70,7 @@ mv logstash-*.jar logstash.jar
 (
 cat <<'EOF'
 #! /bin/sh
- 
+
 ### BEGIN INIT INFO
 # Provides:          logstash
 # Required-Start:    $remote_fs $syslog
@@ -82,19 +80,19 @@ cat <<'EOF'
 # Short-Description: Start daemon at boot time
 # Description:       Enable service provided by daemon.
 ### END INIT INFO
- 
+
 . /lib/lsb/init-functions
- 
+
 name="logstash"
 logstash_bin="/usr/bin/java -- -jar /opt/logstash/logstash.jar"
 logstash_conf="/etc/logstash/logstash.conf"
 logstash_log="/var/log/logstash.log"
 pid_file="/var/run/$name.pid"
 patterns_path="/etc/logstash/patterns"
- 
+
 start () {
         command="${logstash_bin} agent -f $logstash_conf --log ${logstash_log}"
- 
+
         log_daemon_msg "Starting $name" "$name"
         if start-stop-daemon --start --quiet --oknodo --pidfile "$pid_file" -b -m --exec $command; then
                 log_end_msg 0
@@ -102,16 +100,16 @@ start () {
                 log_end_msg 1
         fi
 }
- 
+
 stop () {
         log_daemon_msg "Stopping $name" "$name"
         start-stop-daemon --stop --quiet --oknodo --pidfile "$pid_file"
 }
- 
+
 status () {
         status_of_proc -p "$pid_file" "$name"
 }
- 
+
 case $1 in
         start)
                 if status; then exit 0; fi
@@ -136,7 +134,7 @@ case $1 in
                 exit 1
                 ;;
 esac
- 
+
 exit 0
 EOF
 ) | tee /etc/init.d/logstash

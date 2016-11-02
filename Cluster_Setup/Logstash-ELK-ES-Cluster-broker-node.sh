@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
 
 # This script configures the node as a logstash broker sending to redis on backend logstash processors
 
@@ -45,7 +43,7 @@ add-apt-repository -y ppa:webupd8team/java
 apt-get -qq update
 echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 apt-get install -y oracle-java7-installer oracle-java7-set-default
- 
+
 ##################### Logstash Front-End Broker Setup ###########################################
 # Install Pre-Reqs
 apt-get install -y --force-yes ruby ruby1.9.1-dev libcurl4-openssl-dev
@@ -287,6 +285,4 @@ echo "Installation has completed!!"
 echo -e "To connect to cluster connect to ${red}http://logstash/kibana${NC}"
 echo -e "To connect to individual host use the info below"
 echo -e "Connect to ${red}http://$yourfqdn/kibana${NC} or ${red}http://$IPADDY/kibana${NC}"
-echo "${yellow}EveryThingShouldBeVirtual.com${NC}"
-echo "${yellow}@mrlesmithjr${NC}"
-echo "${yellow}Enjoy!!!${NC}"
+

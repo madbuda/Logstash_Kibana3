@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Provided by @mrlesmithjr
-# EveryThingShouldBeVirtual.com
+
 
 # This will install logstash as a shipper to output to redis on another server
 
@@ -135,7 +134,7 @@ input {
     sincedb_path => "/var/log/.sincedb"
   }
 }
- 
+
 filter {
   if [type] == "apache" {
     grok {
@@ -143,7 +142,7 @@ filter {
     }
     mutate {
       add_tag => [ "pre-processed" ]
-    }  
+    }
     geoip {
       source => "clientip"
       target => "geoip"

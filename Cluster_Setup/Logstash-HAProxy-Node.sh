@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
+
 
 # This script will configure rsyslog to listen on UDP/514 and sort out some types of devices that do not support sending syslog to a TCP port.
 # Logstash will send to the e elasticsearch logstash-cluster using redis
@@ -48,7 +47,7 @@ apt-get install -y --force-yes git curl nginx software-properties-common
  apt-get -qq update
  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
  apt-get install -y oracle-java7-installer oracle-java7-set-default
- 
+
 # Install Logstash
 cd /opt
 wget https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz
@@ -253,6 +252,4 @@ EOF
 # All Done
 echo "Installation has completed!!"
 echo "Now continue on and setup your ES Master/Data nodes"
-echo "${yellow}EveryThingShouldBeVirtual.com${NC}"
-echo "${yellow}@mrlesmithjr${NC}"
-echo "${yellow}Enjoy!!!${NC}"
+
